@@ -18,9 +18,9 @@ async def search_flights(origin: str, destination: str, departure: date, travele
     else:
         raise NotImplementedError(f"Function for {settings.TRAVEL_PROVIDER} not implemented")
 
-async def search_hotels(destination: str, check_in: date, nights: int, travellers: int) -> list[HotelOption]:
+async def search_hotels(destination: str, check_in: date, nights: int, travelers: int) -> list[HotelOption]:
     if settings.TRAVEL_PROVIDER == "mock":
-        return _mock_hotels(destination, nights, travellers)
+        return _mock_hotels(destination, nights, travelers)
     else:
         raise NotImplementedError(f"Function for {settings.TRAVEL_PROVIDER} not implemented")
 
