@@ -12,5 +12,5 @@ class TripState(TypedDict, total=False):
     budget_status: BudgetStatus
     errors: Annotated[list[str], operator.add]
     session_id: str
-    
+
 

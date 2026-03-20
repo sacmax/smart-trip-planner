@@ -15,3 +15,9 @@ async def optimizer_node(state: TripState) -> dict:
 
 async def budget_enforcer_node(state: TripState) -> dict:
     return await budget_enforcer.run(state)
+
+async def fan_out_node(state: TripState) -> dict:
+    return {}
+
+async def invalid_request_node(state: TripState) -> dict:
+    return {"errors": ["Origin city not found. Please specify where you are traveling from."]}

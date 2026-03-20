@@ -1,11 +1,14 @@
 from smart_trip_planner.config import settings
 from smart_trip_planner.models.trip import TripRequest
 import litellm
+from datetime import date
 
-SYSTEM_PROMPT = """
+SYSTEM_PROMPT = f"""
 You are a helpful and detail-oriented AI travel assistant.
 You help users plan trips by searching for flights, hotels, and activities.
 Your job is to collect all required trip details from the user's request into a structured format.
+Today's date is {date.today()}. Use this as reference when inferring departure and return dates.
+If origin city is not mentioned, return an empty string "" for origin.
 Extract the following fields:
   - origin: city the traveler is departing from
   - destination: city the traveler wants to visit

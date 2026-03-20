@@ -11,7 +11,7 @@ async def run_graph(user_input):
         session_id = str(uuid.uuid4())
         graph = build_trip_graph(checkpointer=checkpointer)
         async for chunk in  graph.astream(
-            {"user_input": user_input, "session_id": session_id},
+            {"user_input": user_input,"session_id": session_id},
             config={"configurable": {"thread_id": session_id}}
         ):
             if "parse_request" in chunk:
@@ -34,11 +34,14 @@ async def run_graph(user_input):
         console = Console()
         if errors:
             console.print(f"[red]Errors: {errors}[/red]")
+        elif not itinerary:
+            console.print("[yellow]Could not build itinerary.[/yellow]")
         else:
             console.print(itinerary)
             console.print(budget_status)
 
 @click.command()
 @click.argument("user_query")
+
 def main(user_query):
     asyncio.run(run_graph(user_query))
