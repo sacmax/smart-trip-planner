@@ -3,7 +3,9 @@ from smart_trip_planner.models.trip import BudgetStatus
 class BudgetEnforcerAgent:
 
     async def run(self, state: dict) -> dict:
-        itinerary = state["itinerary"]
+        itinerary = state.get("itinerary")
+        if not itinerary:
+            return {"errors": ["No itinerary found, cannot check budget"]}
         total_nights = (itinerary.request.return_date - itinerary.request.departure).days
         flight_cost = itinerary.selected_flight.price
         hotel_cost = itinerary.days[0].hotel.price_per_night * total_nights

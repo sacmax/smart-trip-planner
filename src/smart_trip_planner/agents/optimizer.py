@@ -3,11 +3,11 @@ from smart_trip_planner.models.trip import DayPlan, Itinerary
 
 class OptimizerAgent:
     async def run(self, state: dict) -> dict:
-        if not state["flight_options"]:
+        if not state.get("flight_options"):
             return {"errors": ["No flights found, cannot build itinerary"]}
-        if not state["hotel_options"]:
+        if not state.get("hotel_options"):
             return {"errors": ["No hotels found, cannot build itinerary"]}
-        if not state["activity_options"]:
+        if not state.get("activity_options"):
             return {"errors": ["No activity found, cannot build itinerary"]}
         best_flight = state["flight_options"][0]
         best_hotel = state["hotel_options"][0]
